@@ -43,7 +43,7 @@ class TwitchBot(Chatbot):
 	def new_command(cls, cooldown):
 		def decorator(fn):
 			fn.command_cooldown = cooldown
-			fn.is_command_function = True
+			fn.is_twitchbot_command_function = True
 			return fn
 		# Trick to check if decorator was applied without arguments. If the first argument is callable, then it is the function to be decorated
 		if callable(cooldown):
@@ -186,7 +186,7 @@ class TwitchBot(Chatbot):
 
 		command_functions = inspect.getmembers(
 			self,
-			lambda fn: hasattr(fn, "is_command_function") and fn.is_command_function
+			lambda fn: hasattr(fn, "is_twitchbot_command_function") and fn.is_twitchbot_command_function
 		)
 		for name, method in command_functions:
 			self.register_command(name.lower(), method, method.command_cooldown)
