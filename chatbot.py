@@ -148,5 +148,7 @@ class Chatbot:
 			con_handler.setFormatter(log_fmt)
 			self.logger.addHandler(con_handler)
 
+		self.logger.info(f"Log file created in '{filename}'")
+
 	def is_known_command(self, command_str):
 		return command_str[0] == self.command_char and command_str[1:] in self.command_methods

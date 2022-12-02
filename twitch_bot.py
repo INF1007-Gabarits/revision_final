@@ -64,9 +64,11 @@ class TwitchBot(Chatbot):
 		self.logs_folder = logs_folder
 		self.log_to_console = log_to_console
 		self.pokemon_exception_handling=pokemon_exception_handling
+		self.authenticated = False
 		self._setup_commands()
 
 	def connect_and_join(self, password, nickname, channel):
+		self.authenticated = False
 		self.nickname = nickname
 		self.channel = channel
 
@@ -75,8 +77,15 @@ class TwitchBot(Chatbot):
 		self.connect(TwitchBot.twitch_chat_url, TwitchBot.twitch_chat_port, True)
 
 		self.authenticate(password, nickname)
-		while self.receive_msgs() == []:
-			pass
+		while True:
+			msgs = self.receive_msgs()
+			if msgs != []:
+				for msg in msgs:
+					if "login authentication failed" in msg.params.lower():
+						self.logger.error("Authentication to server failed")
+						return
+				break
+		self.authenticated = True
 
 		# Membership (Twitch verbosity stuff)
 		membership_requests = (
@@ -98,10 +107,14 @@ class TwitchBot(Chatbot):
 		self.logger.debug("Done connecting.")
 
 	def run(self):
+		if not self.authenticated:
+			self._leave_and_disconnect()
+			return
+
 		self.logger.debug("Listening to chat for commands...")
 		while True:
-			time.sleep(0.010) # Just to yield control of the thread
 			try:
+				time.sleep(0.010) # Just to yield control of the thread
 				msgs = self.receive_msgs()
 				for msg in msgs:
 					if msg.command == "PING":
@@ -117,15 +130,13 @@ class TwitchBot(Chatbot):
 				self.logger.error(f"{type(e).__name__}: {str(e)}")
 				if not self.pokemon_exception_handling:
 					break
+			except KeyboardInterrupt:
+				self.logger.error(f"Caught KeyboardInterrupt, shutting down")
+				break
 			except:
 				self.logger.error("Unknown exception caught")
 				break
-		
-		ch = self.channel
-		self.leave_channel()
-		self.logger.debug(f"Left channel {ch}")
-		self.irc_client.disconnect()
-		self.logger.debug(f"Disconnected")
+		self._leave_and_disconnect()
 
 	def send_supported_commands(self, cmd: Chatbot.Command):
 		if cmd.params is None:
@@ -185,4 +196,11 @@ class TwitchBot(Chatbot):
 		help_fn.__doc__ = "Shows the usage for a command."
 		for name in TwitchBot.help_command_names:
 			self.register_command(name, help_fn, TwitchBot.default_help_cooldown)
+
+	def _leave_and_disconnect(self):
+		ch = self.channel
+		self.leave_channel()
+		self.logger.debug(f"Left channel {ch}")
+		self.irc_client.disconnect()
+		self.logger.debug(f"Disconnected")
 
