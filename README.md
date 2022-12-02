@@ -1,5 +1,3 @@
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod-redirect-0.herokuapp.com/)
-
 # Chatbot pour Twitch! (révision)
 
 <!-- Avant de commencer. Consulter les instructions à suivre dans [instructions.md](instructions.md) -->
@@ -61,7 +59,7 @@ On vous dit d'insérer votre jeton OAuth, votre nom de compte et le channel cibl
 
 Le code à compléter est dans *ch7.py*
 
-## Révision chapitre 8 (format de fichiers)
+## Révision chapitre 8 (formats de fichiers)
 
 Nous avons vu au chapitre 8 plusieurs formats de fichier, tels que WAV, INI, CSV et JSON.
 
@@ -97,11 +95,11 @@ Documentation de `argparse` : https://docs.python.org/3/library/argparse.html#th
 
 Les classes fournies utilisent des notions qu'on n'a pas encore vues dans le cours, particulièrement les *dataclasses* et les décorateurs.
 
-#### Décorateurs (très optionel)
+#### Décorateurs
 
-On s'est déjà servi de décorateurs jusqu'à présent, tels que `@property`, `@staticmethod` et `@abstractmethod`, mais nous n'avons jamais compris comment ils fonctionnent. Nous n'allons pas en faire dans l'exercice qui suit non plus, mais si vous voulez comprendre comment est implémenté le décorateur `@TwitchBot.new_command`, vous aurez besoin des bases.
+On s'est déjà servi de décorateurs jusqu'à présent, tels que `@property`, `@staticmethod` et `@abstractmethod`, mais nous n'avons jamais compris comment ils fonctionnent (les exemples de décorateurs du chapitre 7 étaient très simples). Si vous voulez comprendre comment est implémenté le décorateur `@TwitchBot.new_command`, vous aurez besoin des bases.
 
-Vous trouverez sur [realpython.com](https://realpython.com/) un excellent [tutoriel sur les décorateurs](https://realpython.com/primer-on-python-decorators/). Vous n'en avez pas besoin pour le cours INF1007, mais ça peut approfondir votre maîtrise du Python si vous êtes curieux. C'est en gros nos chapitres 7 et 11 sur stéroïdes.
+Vous trouverez sur [realpython.com](https://realpython.com/) un excellent [tutoriel sur les décorateurs](https://realpython.com/primer-on-python-decorators/). Ça peut approfondir votre maîtrise du Python si vous êtes curieux. C'est en gros nos chapitres 7 et 11 sur stéroïdes.
 
 #### Dataclasses
 

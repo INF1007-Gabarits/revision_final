@@ -160,7 +160,7 @@ class TwitchBot(Chatbot):
 			self.logger.warning(f"Message length {text_length} > {TwitchBot.twitch_text_len_max}")
 		return sent_msg, num_sent_bytes
 
-	def register_command(self, command_name, callback, cooldown):
+	def register_command(self, command_name, callback, cooldown=0):
 		copied_callback = functools.partial(callback)
 		copied_callback.__doc__ = TwitchBot.format_usage_docstring(command_name, callback.__doc__)
 		super().register_command(command_name.lower(), copied_callback, cooldown)
