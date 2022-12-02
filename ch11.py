@@ -18,3 +18,7 @@ def run_ch11_example():
 	bot = ...
 	bot.connect_and_join(config.password, config.nickname, config.channel)
 	bot.run()
+
+
+if __name__ == "__main__":
+	run_ch11_example()

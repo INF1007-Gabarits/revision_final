@@ -24,3 +24,6 @@ def run_ch7_example():
 	bot.connect_and_join("oauth:...", "...", "chosson")
 	bot.run()
 
+
+if __name__ == "__main__":
+	run_ch7_example()

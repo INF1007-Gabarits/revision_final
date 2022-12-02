@@ -9,7 +9,7 @@ from collections import namedtuple
 
 from chatbot import *
 from twitch_bot import *
-from ch8 import *
+from _ch8_version_prof import *
 
 def parse_args():
 	arg_parser = argparse.ArgumentParser(
@@ -47,3 +47,6 @@ def run_ch9_example():
 	# TODO: Passer les noms de fichiers à la fonction du chapitre 8.
 	run_ch8_example(opts.config_file, opts.quotes_file)
 
+
+if __name__ == "__main__":
+	run_ch9_example()

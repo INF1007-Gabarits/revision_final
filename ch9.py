@@ -11,6 +11,7 @@ from chatbot import *
 from twitch_bot import *
 from ch8 import *
 
+
 def parse_args():
 	arg_parser = argparse.ArgumentParser(
 		description="Run custom chatbot.",
@@ -40,3 +41,6 @@ def run_ch9_example():
 	opts = parse_args()
 	# TODO: Passer les noms de fichiers à la fonction du chapitre 8.
 
+
+if __name__ == "__main__":
+	run_ch9_example()

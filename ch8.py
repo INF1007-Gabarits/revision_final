@@ -45,3 +45,6 @@ def run_ch8_example(config_filename, quotes_filename):
 		bot.connect_and_join(config.password, config.nickname, config.channel)
 		bot.run()
 
+
+if __name__ == "__main__":
+	run_ch8_example("data/config.ini", "data/quotes.json")
