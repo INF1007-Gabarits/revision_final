@@ -5,19 +5,23 @@ Exemple récapitulatif qui inclut les notions du chapitre 11 et de tous les autr
 
 from _ch8_version_prof import *
 from _ch9_version_prof import *
+from _ch10_version_prof import *
 from _my_bot_version_prof import MyBot
 
 
 def run_ch11_example():
 	opts = parse_args()
 
-	config, _ = load_config(opts.config_file)
+	config, conf_file = load_config(opts.config_file)
 	quotes = load_quotes(opts.quotes_file)
+	vote_values = [s.strip() for s in conf_file["votes"]["values"].split(",")]
+	ylimit = float(conf_file["votes"]["ylimit"])
+	votes_plot = build_votes_plot(vote_values, ylimit)
 
-	# TODO: Construire un objet de type `MyBot` avec "logs" comme dossier de journaux et avec les citations extraites du JSON.
-	bot = MyBot("logs", quotes)
+	# TODO: Construire un objet de type `MyBot` avec "logs" comme dossier de journaux, les citations extraites du JSON et le graphique déjà construit.
+	bot = MyBot("logs", quotes, votes_plot)
 	bot.connect_and_join(config.password, config.nickname, config.channel)
-	bot.run()
+	start_bot_and_show_plot(bot, bot.votes_plot)
 
 
 if __name__ == "__main__":

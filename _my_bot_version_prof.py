@@ -6,14 +6,17 @@ import random
 
 from chatbot import *
 from twitch_bot import *
+from _ch10_version_prof import *
 
 
 class MyBot(TwitchBot):
-	def __init__(self, logs_folder, quotes):
-		# Construire la classe parent en lui passant le dossier de journaux.
+	def __init__(self, logs_folder, quotes, votes_plot):
+		# TODO: Construire la classe parent en lui passant le dossier de journaux.
 		super().__init__(logs_folder)
-		# On garde le dictionnaire de citations (paramètre `quotes`) dans une variable d'instance.
+		# TODO: Garder le dictionnaire de citations (paramètre `quotes`) dans une variable d'instance.
 		self.quotes = quotes
+		# TODO: Garder le graphique dans une variable d'instance.
+		self.votes_plot = votes_plot
 
 	# TODO: Ajouter une commande "say_hi" (à l'aide du décorateur TwitchBot.new_command) qui répond avec un message de la forme:
 	#       "My name is <nom-du-bot>. You killed my father. Prepare to die.", où <nom-du-bot> est le nom du compte utilisé par le chatbot.
@@ -38,3 +41,20 @@ class MyBot(TwitchBot):
 			random_category = random.choice(tuple(self.quotes.keys()))
 			random_quote = random.choice(self.quotes[random_category])
 			self.send_privmsg(random_quote)
+
+	# TODO: Ajouter une commande "vote" qui reproduit le comportement de la même commande de l'exemple du chapitre 10
+	@TwitchBot.new_command
+	def vote(self, cmd: Chatbot.Command):
+		vote = cmd.params
+		# TODO: Trouver l'index de la valeur votée dans les noms des barres (votes_plot.x_data).
+		try:
+			index = self.votes_plot.x_data.index(vote)
+		except ValueError:
+			index = None
+		# TODO: Si le vote est reconnu, incrémenter l'élément correspondant des votes obtenus (votes_plot.y_data).
+		#       Sinon, envoyer dans le chat un message énumérant les votes possibles.
+		if index != None:
+			self.votes_plot.y_data[index] += 1
+		else:
+			self.send_privmsg(f"Possible votes: {', '.join(self.votes_plot.x_data)}")
+

@@ -10,10 +10,13 @@ from twitch_bot import *
 
 # TODO: Hériter de la classe TwitchBot
 class MyBot:
-	def __init__(self, logs_folder, quotes):
-		# Construire la classe parent en lui passant le dossier de journaux.
-		# On garde le dictionnaire de citations (paramètre `quotes`) dans une variable d'instance.
+	def __init__(self, logs_folder, quotes, votes_plot):
 		pass
+		# TODO: Construire la classe parent en lui passant le dossier de journaux.
+
+		# TODO: Garder le dictionnaire de citations (paramètre `quotes`) dans une variable d'instance.
+
+		# TODO: Garder le graphique dans une variable d'instance `votes_plot`.
 
 	# TODO: Ajouter une commande "say_hi" (à l'aide du décorateur TwitchBot.new_command) qui répond avec un message de la forme:
 	#       "My name is <nom-du-bot>. You killed my father. Prepare to die.", où <nom-du-bot> est le nom du compte utilisé par le chatbot.
@@ -24,4 +27,6 @@ class MyBot:
 			# Si la catégorie est connue, on envoie au hasard une citation venant de cette catégorie si elle est connue, sinon
 			# Sinon, on envoie un message disant que la catégorie est inconnue (ex. "Unrecognized category 'la_catégorie'")
 		# Si aucune catégorie n'est fournie, on choisit au hasard une catégorie puis une citation (comme dans l'exemple du chapitre 8)
+		
+	# TODO: Ajouter une commande "vote" qui reproduit le comportement de la même commande de l'exemple du chapitre 10
 
