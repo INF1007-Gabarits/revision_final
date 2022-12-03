@@ -24,17 +24,13 @@ def build_votes_plot(x_data, y_limit):
 	y_data = [0] * len(x_data)
 	fig, ax = plt.subplots()
 	# TODO: Donner un titre à la figure.
-
 	# TODO: Donner un nom aux deux axes.
-
 	# TODO: Établir la portée de l'axe y de 0 à y_limit.
-
 	# TODO: Créer un axe d'histogramme (bar).
 	y_bars = ...
 	
 	def update_plot():
 		# TODO: Mettre à jour les barres de l'histogramme (y_bars) avec les données (y_data).
-
 		# TODO: Mettre à jour la portée de l'axe verticale au multiple de y_limit le plus proche de la valeur maximale en y.
 
 		fig.canvas.draw()
@@ -46,7 +42,6 @@ def build_vote_callback(bot, votes_plot: VotesPlot):
 	def callback(cmd: Chatbot.Command):
 		vote = cmd.params
 		# TODO: Trouver l'index de la valeur votée dans les noms des barres (votes_plot.x_data).
-
 		# TODO: Si le vote est reconnu, incrémenter l'élément correspondant des votes obtenus (votes_plot.y_data).
 		#       Sinon, envoyer dans le chat un message énumérant les votes possibles.
 

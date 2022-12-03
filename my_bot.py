@@ -11,12 +11,10 @@ from twitch_bot import *
 # TODO: Hériter de la classe TwitchBot
 class MyBot:
 	def __init__(self, logs_folder, quotes, votes_plot):
-		pass
 		# TODO: Construire la classe parent en lui passant le dossier de journaux.
-
 		# TODO: Garder le dictionnaire de citations (paramètre `quotes`) dans une variable d'instance.
-
 		# TODO: Garder le graphique dans une variable d'instance `votes_plot`.
+		pass
 
 	# TODO: Ajouter une commande "say_hi" (à l'aide du décorateur TwitchBot.new_command) qui répond avec un message de la forme:
 	#       "My name is <nom-du-bot>. You killed my father. Prepare to die.", où <nom-du-bot> est le nom du compte utilisé par le chatbot.
