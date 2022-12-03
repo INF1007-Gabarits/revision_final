@@ -170,3 +170,7 @@ On enregistre une commande `!quote` à laquelle le bot répond en choisissant un
 
 <img src="doc/assets/quote_example.png">
 
+#### Je vote pour...
+
+On reproduit le comportement de l'exemple du chapitre 10 dans une commande `!vote` sauf que le graphique lui-même (l'objet de type `VotesPlot`) est une variable d'instance de la classe `MyBot`.
+
