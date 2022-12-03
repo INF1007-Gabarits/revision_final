@@ -89,6 +89,35 @@ Le code à compléter est dans *ch9.py*
 
 Documentation de `argparse` : https://docs.python.org/3/library/argparse.html#the-add-argument-method
 
+## Révision chapitre 10 (bibliothèques scientifiques et graphiques)
+
+Nous avons vu au chapitre 10 et dans les travaux et projet comment nous servir de la librairie *matplotlib* pour afficher des graphiques. Nous allons ici afficher un histogramme des votes effectués dans le chat.
+
+### Construire un diagramme à bande
+
+On veut présenter notre histogramme sous forme d'un diagramme à bande comme ceci :
+
+<img src="doc/assets/barplot_example.png">
+
+On trouve les valeurs possibles de vote et la limite de base de l'axe *y* dans [data/config.ini](data/config.ini) sous la section `[votes]`. On va aussi créer en même temps un callback à appeler pour mettre à jour le graphique. En effet, puisque notre graphique change en temps réel plutôt que d'être statique, il faut le redessiner régulièrement, ce qui inclut redimensionner l'axe vertical selon les valeurs présentes. 
+
+### Effectuer le vote
+
+On enregistre une commande `!vote` qui incrémente le compte de votes pour la valeur donnée. Si la valeur donnée n'est pas reconnue ou si aucune n'est donnée, le chatbot envoie message énumérant les valeurs possibles.
+
+<img src="doc/assets/vote_example.png">
+
+Dans cet exemple, le bot utilise le compte *chosson_bot2* pour communiquer.
+
+Documentation utile :
+
+`FigureBase.suptitle` : https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.FigureBase.suptitle <br>
+`Axes.set_xlabel` : https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel <br>
+`Axes.set_ylim` : https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim <br>
+`Axes.bar` : https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar <br>
+`BarContainer` : https://matplotlib.org/stable/api/container_api.html#matplotlib.container.BarContainer <br>
+`Rectangle.set_height` : https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html#matplotlib.patches.Rectangle.set_height
+
 ## Révision chapitre 11 (orientée-objet)
 
 ### Matière additionnelle
@@ -134,8 +163,6 @@ Malgré nos efforts, notre code de chatbot est assez peu élégant (des callback
 On enregistre une commande `!say_hi` à laquelle le bot répond en insérant son nom dans une certaine ligne de dialogue :
 
 <img src="doc/assets/say_hi_example.png">
-
-Dans cet exemple, le bot utilise le compte *chosson_bot2* pour communiquer.
 
 #### You are likely to be eaten...
 

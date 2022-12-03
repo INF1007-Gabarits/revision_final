@@ -48,7 +48,7 @@ def build_vote_callback(bot, votes_plot: VotesPlot):
 		# TODO: Trouver l'index de la valeur votée dans les noms des barres (votes_plot.x_data).
 
 		# TODO: Si le vote est reconnu, incrémenter l'élément correspondant des votes obtenus (votes_plot.y_data).
-		#       Sinon, envoyer dans le chat un message énumérant les votse possibles.
+		#       Sinon, envoyer dans le chat un message énumérant les votes possibles.
 
 	return callback
 
@@ -63,6 +63,7 @@ def start_bot_and_show_plot(bot, votes_plot):
 			time.sleep(1.0/30)
 		except:
 			bot.stop()
+	thr.join()
 
 def run_ch10_example():
 	opts = parse_args()
