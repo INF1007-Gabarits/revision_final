@@ -65,6 +65,7 @@ class TwitchBot(Chatbot):
 		self.log_to_console = log_to_console
 		self.pokemon_exception_handling=pokemon_exception_handling
 		self.authenticated = False
+		self.running = False
 		self._setup_commands()
 
 	def connect_and_join(self, password, nickname, channel):
@@ -112,7 +113,8 @@ class TwitchBot(Chatbot):
 			return
 
 		self.logger.debug("Listening to chat for commands...")
-		while True:
+		self.running = True
+		while self.running:
 			try:
 				time.sleep(0.010) # Just to yield control of the thread
 				msgs = self.receive_msgs()
@@ -125,18 +127,22 @@ class TwitchBot(Chatbot):
 							self.dispatch_command(privmsg)
 			except ConnectionError as e:
 				self.logger.error(str(e))
-				break
+				self.running = False
 			except Exception as e:
 				self.logger.error(f"{type(e).__name__}: {str(e)}")
 				if not self.pokemon_exception_handling:
-					break
+					self.running = False
 			except KeyboardInterrupt:
 				self.logger.error(f"Caught KeyboardInterrupt, shutting down")
-				break
+				self.running = False
 			except:
 				self.logger.error("Unknown exception caught")
-				break
+				self.running = False
+
 		self._leave_and_disconnect()
+
+	def stop(self):
+		self.running = False
 
 	def send_supported_commands(self, cmd: Chatbot.Command):
 		if cmd.params is None:
@@ -202,5 +208,6 @@ class TwitchBot(Chatbot):
 		self.leave_channel()
 		self.logger.debug(f"Left channel {ch}")
 		self.irc_client.disconnect()
+		self.authenticated = False
 		self.logger.debug(f"Disconnected")
 

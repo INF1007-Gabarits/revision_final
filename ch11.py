@@ -11,7 +11,7 @@ from my_bot import MyBot
 def run_ch11_example():
 	opts = parse_args()
 
-	config = load_config(opts.config_file)
+	config, _ = load_config(opts.config_file)
 	quotes = load_quotes(opts.quotes_file)
 
 	# TODO: Construire un objet de type `MyBot` avec "logs" comme dossier de journaux et avec les citations extraites du JSON.

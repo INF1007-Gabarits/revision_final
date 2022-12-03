@@ -11,6 +11,7 @@ from chatbot import *
 from twitch_bot import *
 from _ch8_version_prof import *
 
+
 def parse_args():
 	arg_parser = argparse.ArgumentParser(
 		description="Run custom chatbot.",
