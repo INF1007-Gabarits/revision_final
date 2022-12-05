@@ -56,6 +56,9 @@ def start_bot_and_show_plot(bot, votes_plot):
 		try:
 			votes_plot.update_plot()
 			time.sleep(1.0/30)
+		except BaseException as e:
+			bot.logger.error(str(e))
+			bot.stop()
 		except:
 			bot.stop()
 	thr.join()
