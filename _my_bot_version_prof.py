@@ -2,12 +2,40 @@
 Un chatbot qui s'identifie et donnes des citations aléatoires.
 """
 
+
 import random
+import math
+
+import matplotlib.pyplot as plt
 
 from chatbot import *
 from twitch_bot import *
-from _ch10_version_prof import *
 
+
+class VotesPlot:
+	def __init__(self, x_data, y_limit, title="Votes in the chat!"):
+		# TODO: Reproduire la construction du graphique (code du chapitre 10), mais dans des variables d'instances de l'objet courant.
+		self.fig, self.axes = plt.subplots()
+		self.fig.suptitle(title)
+		self.axes.set_xlabel("Possible values")
+		self.axes.set_ylabel("Num votes")
+		self.y_limit = y_limit
+		self.axes.set_ylim([0, self.y_limit])
+		self.reset_bars(x_data)
+
+	def reset_bars(self, x_data):
+		self.x_data = x_data
+		self.axes.clear()
+		self.y_data = [0] * len(self.x_data)
+		self.y_bars = self.axes.bar(self.x_data, self.y_data)
+
+	def update_plot(self):
+		# TODO: Reproduire la mise-à-jour du graphique.
+		for bar, y in zip(self.y_bars, self.y_data):
+			bar.set_height(y)
+		self.axes.set_ylim([0, self.y_limit * math.ceil((max(self.y_data)+1)/self.y_limit)])
+		self.fig.canvas.draw()
+		self.fig.canvas.flush_events()
 
 class MyBot(TwitchBot):
 	def __init__(self, logs_folder, quotes, votes_plot):
@@ -30,7 +58,7 @@ class MyBot(TwitchBot):
 	def quote(self, cmd: Chatbot.Command):
 		# Si un nom de catégorie est donné (on trouve les paramètres de la commande dans cmd.params) :
 		if cmd.params is not None:
-			# Si la catégorie est connue, on envoie au hasard une citation venant de cette catégorie si elle est connue, sinon
+			# Si la catégorie est connue, on envoie au hasard une citation venant de cette catégorie si elle est connue.
 			if cmd.params in self.quotes:
 				self.send_privmsg(random.choice(self.quotes[cmd.params]))
 			# Sinon, on envoie un message disant que la catégorie est inconnue (ex. "Unrecognized category 'la_catégorie'")
@@ -57,4 +85,10 @@ class MyBot(TwitchBot):
 			self.votes_plot.y_data[index] += 1
 		else:
 			self.send_privmsg(f"Possible votes: {', '.join(self.votes_plot.x_data)}")
+
+	# TODO: Ajouter une commande "start_new_vote" qui réinitialise les barres du graphique avec les valeurs en paramètre de la commande (éléments séparés d'un espace).
+	@TwitchBot.new_command
+	def start_new_vote(self, cmd):
+		vote_values = cmd.params.split()
+		self.votes_plot.reset_bars(vote_values)
 
