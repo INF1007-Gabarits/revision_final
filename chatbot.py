@@ -25,7 +25,7 @@ class Chatbot:
 	"""
 
 	@dataclass
-	class Command:
+	class CommandData:
 		"""
 		A command understood by the chatbot.
 
@@ -119,7 +119,7 @@ class Chatbot:
 			info = self.command_methods[command_str[1:]]
 			if now - info.last_call_time >= info.cooldown:
 				params = parts[1] if len(parts) == 2 else None
-				cmd = Chatbot.Command(msg, command_str, params)
+				cmd = Chatbot.CommandData(msg, command_str, params)
 				info.last_call_time = now
 				info.callback((cmd))
 
@@ -151,4 +151,7 @@ class Chatbot:
 		self.logger.info(f"Log file created in '{filename}'")
 
 	def is_known_command(self, command_str):
-		return command_str[0] == self.command_char and command_str[1:] in self.command_methods
+		if len(command_str) >= 2:
+			return command_str[0] == self.command_char and command_str[1:] in self.command_methods
+		else:
+			return False

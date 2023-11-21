@@ -24,7 +24,7 @@ Ce fichier contient des classes qui implémentent un client IRC. Vous n'avez pas
 
 ### *chatbot.py*
 
-Cette classe représente la base d'un chatbot IRC générique (pas forcement Twitch) qui permet de reconnaître des commandes (messages qui commencent par un certain caractère donné) et d'y associer des fonctions de rappel (*callback*). Vous n'avez pas à vous servir directement de la classe `Chatbot`, mais vous aurez à appeler certaines de ses méthodes à travers l'héritage de la classe `TwitchBot`. La classe `Chatbot.Command` sera utile dans le dernier exercice.
+Cette classe représente la base d'un chatbot IRC générique (pas forcement Twitch) qui permet de reconnaître des commandes (messages qui commencent par un certain caractère donné) et d'y associer des fonctions de rappel (*callback*). Vous n'avez pas à vous servir directement de la classe `Chatbot`, mais vous aurez à appeler certaines de ses méthodes à travers l'héritage de la classe `TwitchBot`. La classe `Chatbot.CommandData` sera utile dans le dernier exercice.
 
 ### *twitch_bot.py*
 
@@ -65,7 +65,7 @@ Nous avons vu au chapitre 8 plusieurs formats de fichier, tels que WAV, INI, CSV
 
 ### Charger les données de connexion d'un fichier INI
 
-Dans l'exercice précédent, nous avons écrit directement dans le code source le nom du compte, le jeton d'identification et le channel auquel se connecter. Ce n'est clairement pas une bonne pratique. Nous allons plus charger ces données à partir d'un fichier INI ([data/config.ini](data/config.ini)). Il vous faut donc aller mettre votre nom de compte et votre jeton dans le fichier (sous la section `[login]`). Le nom du channel auquel se connecter est dans la section `[chat]`.
+Dans l'exercice précédent, nous avons écrit directement dans le code source le nom du compte, le jeton d'identification et le channel auquel se connecter. Ce n'est clairement pas une bonne pratique. Nous allons plutôt charger ces données à partir d'un fichier INI ([data/config.ini](data/config.ini)). Il vous faut donc aller mettre votre nom de compte et votre jeton dans le fichier (sous la section `[login]`). Le nom du channel auquel se connecter est dans la section `[chat]`.
 
 Le code à compléter est dans *ch8.py*
 
@@ -80,7 +80,7 @@ Dans le fichier [data/quotes.json](data/quotes.json) on a quelques citations de 
 Dans l'exercice précédent, nous avions chargé les données à partir de fichiers, mais les noms des fichiers étaient encore écrits directement dans le code source. On peut faire mieux. En effet, nous avons vu au chapitre 9 comment passer des arguments au script quand on l'appelle. On va donc passer les noms des fichiers en paramètres au script. De cette façon, on pourrait rouler le script ainsi :
 
 ```
-./main.py --config-file data/config.ini --quotes-file data/quotes.json
+./ch9.py --config-file data/config.ini --quotes-file data/quotes.json
 ```
 
 On roule le même code qu'au chapitre 8 (en utilisant `run_ch8_example()`) en passant les noms de fichier extraits de la ligne de commande.

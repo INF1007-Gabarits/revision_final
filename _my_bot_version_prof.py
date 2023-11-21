@@ -50,12 +50,12 @@ class MyBot(TwitchBot):
 	#       "My name is <nom-du-bot>. You killed my father. Prepare to die.", où <nom-du-bot> est le nom du compte utilisé par le chatbot.
 	#       Indice : Dans la méthode connect_and_join de TwitchBot, le nom (nickname) du bot est gardé comme attribut.
 	@TwitchBot.new_command
-	def say_hi(self, cmd: Chatbot.Command):
+	def say_hi(self, cmd: Chatbot.CommandData):
 		self.send_privmsg(f"My name is {self.nickname}. You killed my father. Prepare to die.")
 
 	# TODO: Ajouter une commande "quote" qui répond de trois façons selon ce qui suit le nom de la commande dans le message.
 	@TwitchBot.new_command
-	def quote(self, cmd: Chatbot.Command):
+	def quote(self, cmd: Chatbot.CommandData):
 		# Si un nom de catégorie est donné (on trouve les paramètres de la commande dans cmd.params) :
 		if cmd.params is not None:
 			# Si la catégorie est connue, on envoie au hasard une citation venant de cette catégorie si elle est connue.
@@ -72,7 +72,7 @@ class MyBot(TwitchBot):
 
 	# TODO: Ajouter une commande "vote" qui reproduit le comportement de la même commande de l'exemple du chapitre 10
 	@TwitchBot.new_command
-	def vote(self, cmd: Chatbot.Command):
+	def vote(self, cmd: Chatbot.CommandData):
 		vote = cmd.params
 		# TODO: Trouver l'index de la valeur votée dans les noms des barres (votes_plot.x_data).
 		try:

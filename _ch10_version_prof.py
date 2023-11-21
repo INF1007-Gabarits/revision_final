@@ -45,7 +45,7 @@ def build_votes_plot(x_data, y_limit):
 	return VotesPlot(fig, ax, x_data, y_data, update_plot)
 
 def build_vote_callback(bot, votes_plot: VotesPlot):
-	def callback(cmd: Chatbot.Command):
+	def callback(cmd: Chatbot.CommandData):
 		vote = cmd.params
 		# TODO: Trouver l'index de la valeur votée dans les noms des barres (votes_plot.x_data).
 		try:
