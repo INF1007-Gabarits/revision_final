@@ -40,16 +40,16 @@ class TwitchBot(Chatbot):
 	"""
 
 	@staticmethod
-	def new_command(fn=None, /, *, cooldown=0):
+	def new_command(func=None, /, *, cooldown=0):
 		def decorator(fn):
 			fn.command_cooldown = cooldown
 			fn.is_twitchbot_command_function = True
 			return fn
 		# Trick to check if decorator was applied without arguments. If the first argument is None, then it was called with arguments.
-		if fn is None:
+		if func is None:
 			return decorator
 		else:
-			return decorator(fn)
+			return decorator(func)
 
 	TWITCH_CHAT_URL = "irc.chat.twitch.tv"
 	TWITCH_CHAT_PORT = 6697

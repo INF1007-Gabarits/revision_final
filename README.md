@@ -130,6 +130,8 @@ On s'est déjà servi de décorateurs jusqu'à présent, tels que `@property`, `
 
 Vous trouverez sur [realpython.com](https://realpython.com/) un excellent [tutoriel sur les décorateurs](https://realpython.com/primer-on-python-decorators/). Ça peut approfondir votre maîtrise du Python si vous êtes curieux. C'est en gros nos chapitres 7 et 11 sur stéroïdes.
 
+Si vous êtes encore plus motivés, vous pouvez aussi consulter [cet article sur les paramètres spéciaux](https://realpython.com/python-asterisk-and-slash-special-parameters).
+
 #### Dataclasses
 
 Il nous arrive parfois de vouloir écrire une classe simple qui ne fait que contenir des valeurs accessibles publiquement, chacune ayant un type précis et sans avoir besoin de méthodes d'accès et de modification particulières. Pour ce faire, il faut quand même écrire un `__init__()` qui initialise les attributs qu'on veut et un `__repr__()` qui est somme toute assez trivial (on formate les données une à la suite de l'autre). Ça fait beaucoup de code qui ne sert pas à grand-chose, ou du *boilerplate* comme on dit.
